@@ -2,18 +2,18 @@
 FROM centos:7
 
 RUN rpm -i http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm && \
-yum -y install mesos-0.24.1
+yum -y install mesos
 {% elif 'ubuntu' in version %}
 FROM ubuntu:14.04
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF && \
 echo deb http://repos.mesosphere.io/ubuntu trusty main > /etc/apt/sources.list.d/mesosphere.list && \
 apt-get update && \
-apt-get -y install mesos=0.24.1-0.2.35.ubuntu1404 curl
+apt-get -y install mesos curl
 {% endif %}
 
 {% if type == 'slave' %}
-RUN curl -fLsS https://get.docker.com/ | sh
+RUN curl -sSL https://get.daocloud.io/docker | sh
 
 ENV MESOS_CONTAINERIZERS docker,mesos
 

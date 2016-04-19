@@ -28,18 +28,22 @@ function zk_container_primary_ip {
   echo $(zk_service containers/${c[1]}/primary_ip)  
 }
 
+function zk_container_name {
+  IFS='=' read -ra c <<< "$1"
+  echo $(zk_service containers/${c[1]}/name)  
+}
+
 function zk_string {
-  ZK_CHROOT=${ZK_CHROOT:-"/$(metadata self/stack/name)"}
   ZK_STRING=
   for container in $(zk_service containers); do
-    ip=$(zk_container_primary_ip $container)
+    name=$(zk_container_name $container)
     if [ "$ZK_STRING" == "" ]; then
-      ZK_STRING=zk://$ip:2181
+      ZK_STRING=zk://$name:2181
     else
-      ZK_STRING=$ZK_STRING,$ip:2181
+      ZK_STRING=$ZK_STRING,$name:2181
     fi
   done
-  echo ${ZK_STRING}${ZK_CHROOT}
+  echo ${ZK_STRING}
 }
 
 {% if type == 'master' %}
