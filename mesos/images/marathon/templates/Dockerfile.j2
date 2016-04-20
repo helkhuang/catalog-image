@@ -11,7 +11,7 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF && \
   echo deb http://repos.mesosphere.com/ubuntu trusty main > /etc/apt/sources.list.d/mesosphere.list && \
   apt-get update && \
-  apt-get -y install marathon mesos
+  apt-get -y install marathon mesos curl
 {% endif %}
 
 ADD entrypoint.sh /
