@@ -73,7 +73,7 @@ fi
 {% if type == 'master' %}
   --zk_session_timeout=${ZK_SESSION_TIMEOUT} \
   --port=${MASTER_PORT} \
-  --zk=$(zk_string) \
+  --zk=$(zk_string)/mesos \
 {% else %}
   --port=${SLAVE_PORT} \
 {% endif %}
