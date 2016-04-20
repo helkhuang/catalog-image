@@ -30,7 +30,7 @@ function zk_container_name {
   echo $(zk_service containers/${c[1]}/name)  
 }
 
-function zk_string {
+function zk_hosts {
   ZK_STRING=
   for container in $(zk_service containers); do
     name=$(zk_container_name $container)
