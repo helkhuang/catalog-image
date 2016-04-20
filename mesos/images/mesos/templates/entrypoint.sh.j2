@@ -18,6 +18,10 @@ function zk_service {
   echo $(metadata stacks/${ZK[0]}/services/${ZK[1]}/$1)
 }
 
+function master_service {
+  echo $(metadata self/stack/name)
+}
+
 if [ "$(zk_service containers)" == "Not found" ]; then
   echo "A zookeeper ensemble is required, but '$ZK_SERVICE' was not found."
   sleep 1 && exit 1
@@ -76,6 +80,6 @@ fi
   --zk=$(zk_string)/$(zk_service) \
 {% else %}
   --port=${SLAVE_PORT} \
-  --master=$(zk_string)/$(zk_service) \
+  --master=$(zk_string)/$(master_service) \
 {% endif %}
   "$@"
