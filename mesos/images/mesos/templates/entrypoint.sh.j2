@@ -79,7 +79,7 @@ fi
   --zk_session_timeout=${ZK_SESSION_TIMEOUT} \
   --port=${MASTER_PORT} \
   --log_dir=${LOG_PATH} \
-  --zk=$(zk_string)/$(zk_service) \
+  --zk=$(zk_string)/$(master_service) \
 {% else %}
   --port=${SLAVE_PORT} \
   --log_dir=${LOG_PATH} \
