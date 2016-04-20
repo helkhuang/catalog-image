@@ -49,7 +49,7 @@ function mesos_stack {
 }
 
 function zk_string {
-  echo zk://$(zk_hosts)/$(mesos_stack)
+  echo $(zk_hosts)/$(mesos_stack)
 }
 
 export CHRONOS_MASTER=$(zk_string)
